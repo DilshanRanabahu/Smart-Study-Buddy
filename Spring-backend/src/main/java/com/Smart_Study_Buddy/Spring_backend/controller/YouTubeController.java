@@ -24,7 +24,9 @@ public class YouTubeController {
     private FirestoreService firestoreService;
 
     private final RestTemplate restTemplate = new RestTemplate();
-    private static final String AI_SERVICE_URL = "http://localhost:8000";
+    
+    @org.springframework.beans.factory.annotation.Value("${PYTHON_SERVICE_URL:http://python-backend:8000}")
+    private String PYTHON_SERVICE_URL;
 
     @PostMapping("/upload")
     public ResponseEntity<?> uploadYouTubeVideo(@RequestBody YouTubeUploadRequest request) {
@@ -45,7 +47,7 @@ public class YouTubeController {
             }
 
             // Call Python AI service to extract transcript
-            String extractUrl = AI_SERVICE_URL + "/api/youtube/extract";
+            String extractUrl = PYTHON_SERVICE_URL + "/api/youtube/extract";
             Map<String, String> aiRequest = new HashMap<>();
             aiRequest.put("url", request.getUrl());
 

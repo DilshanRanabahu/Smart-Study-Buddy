@@ -21,7 +21,7 @@ import com.Smart_Study_Buddy.Spring_backend.service.StorageService;
 
 @RestController
 @RequestMapping("/api/documents")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = {"http://localhost:5173", "http://44.204.96.20"})
 public class DocumentController {
 
     private final StorageService storageService;

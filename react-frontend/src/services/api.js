@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8080/api";
+const API_URL = "http://44.204.96.20:8080/api";
 
 // Create axios instance
 const apiClient = axios.create({
@@ -68,7 +68,7 @@ export const extractPdfTextFromStoragePath = (storagePath, documentId) => {
 export const extractPdfText = (file) => {
     const formData = new FormData();
     formData.append('file', file);
-    return axios.post('http://localhost:8000/api/ai/extract-text', formData);
+    return axios.post('http://44.204.96.20:8000/api/ai/extract-text', formData);
 };
 
 export const summarizeDocument = (text, documentId) => {

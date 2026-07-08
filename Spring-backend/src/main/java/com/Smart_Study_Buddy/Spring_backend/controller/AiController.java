@@ -15,11 +15,13 @@ import org.springframework.web.client.RestTemplate;
 
 @RestController
 @RequestMapping("/api/ai")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = {"http://localhost:5173", "http://44.204.96.20"})
 public class AiController {
 
     private final RestTemplate restTemplate = new RestTemplate();
-    private final String AI_SERVICE_URL = "http://localhost:8000/api/ai";
+    
+    @org.springframework.beans.factory.annotation.Value("${AI_SERVICE_URL:http://localhost:8000/api/ai}")
+    private String AI_SERVICE_URL;
 
     @PostMapping("/summarize")
     public ResponseEntity<?> summarize(@RequestBody Map<String, String> request) {

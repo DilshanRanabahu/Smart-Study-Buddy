@@ -1,5 +1,4 @@
-import vertexai
-from vertexai.preview.generative_models import GenerativeModel
+import google.generativeai as genai
 import os
 from typing import List, Dict
 import json
@@ -8,13 +7,21 @@ import re
 class GeminiService:
     
     def __init__(self):
-        # Initialize Vertex AI
-        project_id = os.getenv("VERTEX_AI_PROJECT_ID")
-        location = os.getenv("VERTEX_AI_LOCATION")
-        model_name = os.getenv("VERTEX_AI_MODEL")
-
-        vertexai.init(project=project_id, location=location)
-        self.model = GenerativeModel(model_name)
+        # Initialize Google AI Studio
+        api_key = os.getenv("GEMINI_API_KEY")
+        if not api_key:
+            print("WARNING: GEMINI_API_KEY is not set. Please add it to your environment variables.")
+            
+        genai.configure(api_key=api_key)
+        
+        # Use exact model from previous project
+        model_name = os.getenv("GEMINI_MODEL", "gemini-flash-lite-latest")
+        
+        # If they still passed the vertex naming format, clean it up
+        if "exp" in model_name or "gemini-2.0" in model_name:
+             model_name = "gemini-flash-lite-latest"
+             
+        self.model = genai.GenerativeModel(model_name)
 
     def generate_summary(self, text: str) -> str:
         """Generate a friendly, student-oriented summary"""
