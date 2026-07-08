@@ -16,7 +16,10 @@ import com.google.cloud.firestore.Firestore;
 import com.google.cloud.firestore.QuerySnapshot;
 import com.google.firebase.cloud.FirestoreClient;
 
+import org.springframework.context.annotation.DependsOn;
+
 @Service
+@DependsOn("firebaseConfig")
 public class FirestoreService {
 
     private final Firestore firestore = FirestoreClient.getFirestore();
