@@ -75,6 +75,24 @@ const Login = () => {
           >
             {loading ? 'Logging in...' : 'Login'}
           </button>
+          
+          <div className="mt-4 p-4 bg-blue-50 border border-blue-100 rounded-lg">
+            <p className="text-sm text-blue-800 font-medium mb-2">Demo Credentials:</p>
+            <div className="text-xs text-blue-600 font-mono space-y-1">
+              <p>Email: praveendilshanr@gmail.com</p>
+              <p>Password: MAX10k001@#!</p>
+            </div>
+            <button
+              type="button"
+              onClick={() => {
+                setEmail('praveendilshanr@gmail.com');
+                setPassword('MAX10k001@#!');
+              }}
+              className="mt-2 text-xs bg-blue-200 hover:bg-blue-300 text-blue-800 px-3 py-1.5 rounded transition w-full"
+            >
+              Fill Demo Credentials
+            </button>
+          </div>
         </form>
 
         <p className="text-center text-gray-600 mt-6">
